@@ -1,0 +1,25 @@
+.layout_form {
+  > .title {
+    background: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    > h2 {
+      margin: 0;
+      margin-left: 15px;
+    }
+    > .return_icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+  }
+  .content {
+    background: #fff;
+    padding: 30px;
+    margin: 20px;
+    min-height: calc(100vh - 190px);
+    display: flex;
+    justify-content: center;
+  }
+}

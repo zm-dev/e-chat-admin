@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { LocaleProvider } from 'antd';
+import history from '@/common/history';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
+import 'normalize.css';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(
+  <LocaleProvider locale={zhCN}>
+    <Router history={history}>
+      <Switch>
+        <Route path="/login" component={require('./views/Login').default} />
+        <Route path="/" component={require('./views/Home').default} />
+        <Redirect to="/" />
+      </Switch>
+    </Router>
+  </LocaleProvider>,
+  document.getElementById('root')
+);

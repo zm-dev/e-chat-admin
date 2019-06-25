@@ -1,0 +1,41 @@
+.teacher_image {
+  width: 45px;
+  height: 45px;
+}
+
+.chat_image {
+  width: 45px;
+  height: 45px;
+}
+
+.columns_operation {
+  span {
+    margin-right: 8px;
+    color: #1890ff;
+    cursor: pointer;
+    &:hover {
+      color: #40a9ff;
+    }
+  }
+}
+
+.form_content {
+  padding: 10px 20px;
+  width: 650px;
+}
+
+.columns_title {
+  width: 450px;
+  height: 38px;
+  overflow: hidden;
+}
+
+.recode_box {
+  > h2.title {
+    font-size: 18px;
+  }
+  > .content {
+    height: 400px;
+    overflow-y: scroll;
+  }
+}

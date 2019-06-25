@@ -1,0 +1,22 @@
+.layout_table {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  min-height: calc(100vh - 120px);
+  > .header {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    > .left {
+      display: flex;
+      align-items: center;
+      > .title {
+        font-size: 20px;
+        margin-right: 20px;
+      }
+    }
+  }
+  > .footer {
+    margin-bottom: 20px;
+  }
+}
