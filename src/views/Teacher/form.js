@@ -63,7 +63,7 @@ class FormComponent extends React.PureComponent {
 
           <Form.Item label="简介">
             {getFieldDecorator('profile', {
-              rules: [{ required: true, message: '请输入密码' }],
+              rules: [{ required: true, message: '请输入简介' }],
             })(<Input.TextArea autosize={{ minRows: 2, maxRows: 6 }} placeholder="输入密码" />)}
           </Form.Item>
 
