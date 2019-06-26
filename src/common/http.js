@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { message } from 'antd';
-// import history from './history';
+import history from './history';
 const baseURL = process.env.NODE_ENV === 'development' ? '/api/v1' : '/api/v1';
 const http = axios.create({
   baseURL,
@@ -46,7 +46,7 @@ http.interceptors.response.use(
       //       });
       //     });
       // } else {
-      // history.push('/signin');
+      history.push('login');
       message.error('请先登录');
       // }
     } else {
