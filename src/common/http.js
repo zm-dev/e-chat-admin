@@ -46,7 +46,7 @@ http.interceptors.response.use(
       //       });
       //     });
       // } else {
-      history.push('login');
+      history.push('/login');
       message.error('请先登录');
       // }
     } else {
