@@ -76,6 +76,14 @@ class Teacher extends React.PureComponent {
           <span className={styles.columns_operation}>
             <span
               onClick={e => {
+                this.props.history.push(`/teacher/update/${recode.id}`);
+                e.stopPropagation();
+              }}
+            >
+              修改
+            </span>
+            <span
+              onClick={e => {
                 this.deleteTeacher(recode.id);
                 e.stopPropagation();
               }}

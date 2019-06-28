@@ -36,6 +36,7 @@ export default class Home extends React.PureComponent {
               <Route path="/chat/:id" component={require('../Chat').default} />
               {/* 教师列表 */}
               <Route path="/teacher/add" component={require('../Teacher/add').default} />
+              <Route path="/teacher/update/:id" component={require('../Teacher/update').default} />
               <Route path="/teacher" component={require('../Teacher').default} />
               {/* <Route path="/" component={require('../Teacher').default} /> */}
               <Redirect to="/teacher" />

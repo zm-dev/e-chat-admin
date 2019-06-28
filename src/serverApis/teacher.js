@@ -15,4 +15,14 @@ export default {
   delete(id) {
     return http.delete(`admin/user/${id}`);
   },
+
+  // 获取指定教师
+  get(id) {
+    return http.get(`user/${id}`);
+  },
+
+  // 修改老师
+  update(id, teacher) {
+    return http.put(`/admin/user/${id}`, teacher);
+  },
 };

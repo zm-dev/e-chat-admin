@@ -14,6 +14,32 @@ const formItemLayout = {
   },
 };
 
+// 性别转化
+function getGender(val) {
+  if (val === '男') {
+    return 0;
+  } else if (val === '女') {
+    return 1;
+  } else if (val === '保密') {
+    return 2;
+  } else {
+    return false;
+  }
+}
+
+// 组别转化
+function getGroup(val) {
+  if (val === '朋辈辅导员') {
+    return 3;
+  } else if (val === '老师') {
+    return 1;
+  } else if (val === '校友') {
+    return 2;
+  } else {
+    return false;
+  }
+}
+
 class FormComponent extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -22,7 +48,7 @@ class FormComponent extends React.PureComponent {
 
   render() {
     const { getFieldDecorator, validateFields, setFieldsValue } = this.props.form;
-    const { current, onSubmit, onCancel } = this.props;
+    const { current, onSubmit, onCancel, isUpdate = false } = this.props;
     return (
       <div className={styles.form_content}>
         <Form
@@ -39,43 +65,51 @@ class FormComponent extends React.PureComponent {
           <Form.Item label="头像">
             <div className="dragger">
               {getFieldDecorator('avatar_hash', {
+                initialValue: current && current.avatar_hash,
+                rules: [{ required: true, message: '请上传图片！' }],
                 validateTrigger: 'onBlur',
-              })(<ImageUploader imageUrl={current && current.coverImageUrl} />)}
+              })(<ImageUploader imageUrl={current && current.avatar_url} />)}
             </div>
           </Form.Item>
-          <Form.Item label="账号">
-            {getFieldDecorator('account', {
-              rules: [{ required: true, message: '请输入账号' }],
-            })(<Input placeholder="输入账号" />)}
-          </Form.Item>
+          {!isUpdate && (
+            <Form.Item label="账号">
+              {getFieldDecorator('account', {
+                rules: [{ required: true, message: '请输入账号' }],
+              })(<Input placeholder="输入账号" />)}
+            </Form.Item>
+          )}
 
           <Form.Item label="名称">
             {getFieldDecorator('nick_name', {
+              initialValue: current.nick_name,
               rules: [{ required: true, message: '请输入姓名' }],
             })(<Input placeholder="输入姓名" />)}
           </Form.Item>
-
-          <Form.Item label="密码">
-            {getFieldDecorator('password', {
-              rules: [{ required: true, message: '请输入密码' }],
-            })(<Input placeholder="输入密码" />)}
-          </Form.Item>
+          {!isUpdate && (
+            <Form.Item label="密码">
+              {getFieldDecorator('password', {
+                rules: [{ required: true, message: '请输入密码' }],
+              })(<Input placeholder="输入密码" />)}
+            </Form.Item>
+          )}
 
           <Form.Item label="简介">
             {getFieldDecorator('profile', {
+              initialValue: current.profile,
               rules: [{ required: true, message: '请输入简介' }],
-            })(<Input.TextArea autosize={{ minRows: 2, maxRows: 6 }} placeholder="输入密码" />)}
+            })(<Input.TextArea autosize={{ minRows: 2, maxRows: 6 }} placeholder="输入简介" />)}
           </Form.Item>
 
           <Form.Item label="工作单位">
             {getFieldDecorator('company', {
+              initialValue: current.company,
               rules: [{ required: true, message: '请输入工作单位' }],
             })(<Input placeholder="输入工作单位" />)}
           </Form.Item>
 
           <Form.Item label="性别">
             {getFieldDecorator('gender', {
-              initialValue: 2,
+              initialValue: getGender(current.gender) || 2,
               rules: [{ required: true, message: '请选择性别' }],
             })(
               <Radio.Group
@@ -94,7 +128,7 @@ class FormComponent extends React.PureComponent {
 
           <Form.Item label="组别">
             {getFieldDecorator('group_id', {
-              initialValue: 1,
+              initialValue: getGroup(current.group) || 1,
               rules: [{ required: true, message: '请选择组别' }],
             })(
               <Radio.Group
